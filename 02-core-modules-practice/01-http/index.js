@@ -7,14 +7,14 @@
 
 const http = require('http');
 
-const port = 3000; //porta de acesso ao site;
+const port = 3000; //porta de acesso;
 
 const server = http.createServer((req, res) => {
     res.write('Hello, HTTP');
     res.end();
 })
 
-// 'escutando' a porta, passando no parâmetro a porta e uma função de callback;
+// 'escutando' a porta: os parâmetros são a porta e uma função de callback;
  server.listen(port, () => {
     console.log(`Servidor rodando na porta: ${port}`)
  })
