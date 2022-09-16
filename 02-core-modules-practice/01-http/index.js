@@ -1,6 +1,6 @@
 /* http
     - Módulo que permite criar servidores HTTP;
-    - Recebe uma aquisição e envia um html como resposta;
+    - Recebe uma aquisição e permite o envio de um html como resposta;
 
 */
 
