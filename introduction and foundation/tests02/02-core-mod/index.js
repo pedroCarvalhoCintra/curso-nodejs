@@ -1,5 +1,11 @@
-const paht = require('path');
+/* Core Modules
+    - Módulos naturais do Node;
+    Ex.: Path - > verificar extensões de arquivos;
 
-console.log(paht.extname('arquivo.pdf'));
-console.log(paht.extname('arquivo.php'));
-console.log(paht.extname('arquivo.c'));
+*/
+
+const path = require('path');
+
+console.log(path.extname('arquivo.pdf'));
+console.log(path.extname('arquivo.php'));
+console.log(path.extname('arquivo.c'));
