@@ -1,7 +1,7 @@
 /* Internal Modules 
     - Módulos criados pelo próprio desenvolvedor;
     - É necessário exporta-lo;
-    Ex.: Módulo com uma função que printa dois números;
+    Ex.: Módulo com uma função que printa a soma de dois números;
 */
 
 const sum = require('./sum');
