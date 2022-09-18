@@ -1,8 +1,8 @@
-/* Args via linha de comando
+/* Args via linha de comando.
     - O Node permite que passamos argumentos por linha de comando;
     - Argumentos ficam no array: process.argv;
 
-    Ex.: comando : node index.js nome=Pedro idade=19
+    comando : node index.js nome=Pedro idade=19
 
 */
 

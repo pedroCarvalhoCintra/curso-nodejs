@@ -8,5 +8,5 @@ if ( !fs.existsSync('./minha-pasta')) { // confere se um diretório existe;
 
 
 if ( fs.existsSync('./minha-pasta')){
-    console.log('exist.')
+    console.log('exist.');
 }

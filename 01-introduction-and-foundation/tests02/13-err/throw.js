@@ -1,3 +1,7 @@
+/* throw
+    - uma forma de encerrar o programa, gerando um novo erro;
+*/
+
 const x = '10'
 
 if ( !Number.isInteger(x)){

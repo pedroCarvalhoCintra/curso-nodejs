@@ -1,3 +1,6 @@
+/* events
+    - Core Module que permite criar, chamar e escutar nosos próprios eventos;
+*/
 
 const EventEmitter = require('events');
 const eventEmitter = new EventEmitter();

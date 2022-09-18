@@ -1,4 +1,4 @@
-/* Modules:
+/* Modules.
     - Scripts reaproveitáveis;
     - Internos, Core Modules e Externos;
     Ex.: File System (fs) - > Core Module para trabalhar com diretórios e arquivos;

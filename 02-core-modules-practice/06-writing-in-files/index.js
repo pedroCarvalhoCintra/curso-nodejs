@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
         })
     } else {
         fs.writeFile("arquivo.txt", name, function(err, data) {
-            res.writeHead(302, { // redirect for home;
+            res.writeHead(302, { // redirect (302) for home;
                 Location: '/',
             })
             return res.end();
@@ -28,5 +28,5 @@ const server = http.createServer((req, res) => {
 })
 
  server.listen(port, () => {
-    console.log(`Servidor rodando na porta: ${port}`)
+    console.log(`Servidor rodando na porta: ${port}`);
  })

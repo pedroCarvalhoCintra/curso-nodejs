@@ -1,5 +1,8 @@
+/*
+    Modulo externo e interno.
 
-// node index.js --x=5 --y=10
+    comando : node index.js --x=5 --y=10 
+*/
 
 //EXTERNAL MODULE
 const minimist = require('minimist');

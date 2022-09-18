@@ -1,6 +1,6 @@
 /* url
     - Módulo para trabalhar com url's;
-    - informações da url: host, path, searcj, query, etc;
+    - informações da url: host, path, search, query, etc;
 
 */
 

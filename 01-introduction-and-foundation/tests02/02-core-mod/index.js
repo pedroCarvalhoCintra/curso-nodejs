@@ -1,4 +1,4 @@
-/* Core Modules
+/* Core Modules.
     - Módulos naturais do Node;
     Ex.: Path - > verificar extensões de arquivos;
 

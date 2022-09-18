@@ -1,3 +1,7 @@
+/* Chalk.
+    - External Module que gera feedback com cores no terminal;
+*/
+
 const chalk = require('chalk');
 const minimist = require('minimist');
 

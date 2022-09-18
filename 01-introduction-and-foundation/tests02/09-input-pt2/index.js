@@ -1,4 +1,7 @@
-
+/* inquirer.
+    - External Module que permite a leitura de entradas digitadas pelo usuário;
+    - baseado em Promisses;
+*/
 const inquirer = require('inquirer')
 
 inquirer.prompt([

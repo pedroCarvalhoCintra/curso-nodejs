@@ -1,3 +1,7 @@
+/*
+    Sistema de roteamento simples com Nodejs e seus Core Modules.
+    - as rotas são, de maneira simplificada, as páginas que acessamos em um site;
+*/
 
 const http = require('http');
 const fs = require('fs');
@@ -8,7 +12,7 @@ const port = 3000;
 const server = http.createServer((req, res) => {
 
     const q = url.parse(req.url, true);
-    const fileName = q.pathname.substring(1) // nome do arquivo (a parti do segunda caracter para tirar o '/');
+    const fileName = q.pathname.substring(1) // nome do arquivo (a partir do segunda caracter para tirar o '/');
     
     if (fileName.includes('html')){ //apenas html;
         if ( fs.existsSync(fileName)){  // confere se o arquivo existe;
@@ -34,5 +38,5 @@ const server = http.createServer((req, res) => {
 })
 
  server.listen(port, () => {
-    console.log(`Servidor rodando na porta: ${port}`)
+    console.log(`Servidor rodando na porta: ${port}`);
  })
