@@ -4,8 +4,8 @@ const http = require('http');
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-    const urlInfo = require('url').parse(req.url, true);
-    const name = urlInfo.query.name
+    const urlInfo = require('url').parse(req.url, true); // quando a requisição chegar chama o modulo url, analisa a string da url da req (dividi em partes) e retorna um objeto URL;
+    const name = urlInfo.query.name; // busca parametro name na url;
      
     res.statusCode = 200;
     res.setHeader('Contenty-Type', 'text/html');
