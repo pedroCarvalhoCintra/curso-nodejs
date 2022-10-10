@@ -7,6 +7,12 @@ const app = express()
 app.engine('handlebars', exphbs())
 app.set('view engine', 'handlebars')
 
+app.use(
+  express.urlencoded({
+    extended: true,
+  }),
+)
+app.use(express.json())
 
 app.use(express.static('public'))
 
@@ -14,14 +20,29 @@ app.get('/', function (req, res) {
   res.render('home')
 })
 
-const conn = mysql.createConnection({ // cria conexão com o banco de dados (ainda não está sendo executada)
+app.post('/books/insertbook', function (req, res) { // inserção dos dados
+  const title = req.body.title
+  const pageqty = req.body.pageqty
+
+  const query = `INSERT INTO books (title, pageqty) VALUES ('${title}', ${pageqty})` //instrução no banco de dados;
+
+  conn.query(query, function (err) {
+    if (err) {
+      console.log(err)
+    }
+
+    res.redirect('/')
+  })
+})
+
+const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'nodemysql',
 })
 
-conn.connect(function (err) { // estabelecer conexão a cada interação com a aplicação
+conn.connect(function (err) {
   if (err) {
     console.log(err)
   }
