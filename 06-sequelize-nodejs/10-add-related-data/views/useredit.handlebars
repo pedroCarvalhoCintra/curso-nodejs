@@ -1,0 +1,39 @@
+<h1>Editing: {{user.name}}</h1>
+<form action="/users/update" method="POST" class="form">
+  <div class="form-control">
+    <label for="name">Name:</label>
+    <input type="text" name="name" placeholder="Enter username" value="{{user.name}}">
+  </div>
+  <div class="form-control">
+    <label for="occupation">Occupation:</label>
+    <input type="text" name="occupation" placeholder="Enter profission" value="{{user.occupation}}">
+  </div>
+  <div class="form-control form-checkbox">
+    {{#if user.newsletter}}
+      <input type="checkbox" name="newsletter" checked>
+    {{else}}
+      <input type="checkbox" name="newsletter">
+    {{/if}}    
+    <label for="newsletter">Send promotions?</label>
+  </div>
+  <input type="submit" value="Register">
+</form>
+<div class="address-container">
+  <h2>Adresses</h2>
+  <form action="/address/create" method="POST">
+    <input type="hidden" name="UserId" value="{{user.id}}">
+    <div class="form-control">
+      <label for="street">Street:</label>
+      <input type="text" name="street" placeholder="Enter the street">
+    </div>
+    <div class="form-control">
+      <label for="number">Number:</label>
+      <input type="text" name="number" placeholder="Enter the house number">
+    </div>
+    <div class="form-control">
+      <label for="city">City:</label>
+      <input type="text" name="city" placeholder="Enter the city">
+    </div>
+    <input type="submit" value="Include Address">
+  </form>
+</div>
