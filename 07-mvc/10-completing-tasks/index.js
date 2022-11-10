@@ -10,7 +10,7 @@ const Task = require('./models/Task');
 const taskRoutes = require('./routes/tasksRoutes');
 
 
-app.engine('handlebars', exphbs());
+app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
 app.use(

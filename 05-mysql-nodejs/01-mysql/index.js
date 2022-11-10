@@ -4,7 +4,7 @@ const mysql = require('mysql')
 
 const app = express()
 
-app.engine('handlebars', exphbs())
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 

@@ -1,5 +1,6 @@
 <h1>Editing: {{user.name}}</h1>
 <form action="/users/update" method="POST" class="form">
+<input type="hidden" name="id" value="{{user.id}}">
   <div class="form-control">
     <label for="name">Name:</label>
     <input type="text" name="name" placeholder="Enter username" value="{{user.name}}">
@@ -16,5 +17,5 @@
     {{/if}}    
     <label for="newsletter">Send promotions?</label>
   </div>
-  <input type="submit" value="Register">
+  <input type="submit" value="Edit">
 </form>

@@ -9,7 +9,7 @@ const conn = require('./db/conn');
 const User = require('./models/User');
 const Address = require('./models/Address');
 
-app.engine('handlebars', exphbs())
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.use(
@@ -63,7 +63,7 @@ app.post('/users/delete/:id', async (req, res) => {
 
   await User.destroy({where: {id: id}});
 
-  req.redirect('/');
+  res.redirect('/');
 
 })
 
@@ -72,9 +72,17 @@ app.get('/users/edit/:id', async (req, res) => {
 
   const id = req.params.id;
   
-  const user = await User.findOne({include: Address, where: {id: id}}); 
-
-  req.redirect('useredit', {user: user.get({plain: true})});
+  await User.findOne({
+    include: Address,
+    where: {
+      id: id,
+    },
+  })
+    .then((user) => {
+      console.log(user)
+      res.render('useredit', { user: user.get({plain: true}) })
+    })
+    .catch((err) => console.log(err))
 
 })
 
@@ -83,7 +91,7 @@ app.post('/users/update', async (req, res) => {
   const id = req.body.id;
   const name = req.body.name;
   const occupation = req.body.occupation;
-  const newsletter = req.body.newsletter;
+  let newsletter = req.body.newsletter;
 
   if ( newsletter == 'on') {
     newsletter = true;
@@ -97,6 +105,17 @@ app.post('/users/update', async (req, res) => {
     occupation, 
     newsletter
   }
+
+  // await User.update(userData, {
+  //   where: {
+  //     id: id,
+  //   },
+  // })
+  //   .then((user) => {
+  //     console.log(user)
+  //     res.redirect('/')
+  //   })
+  //   .catch((err) => console.log(err))
 
   await User.update(userData, {where: {id: id}});
 
@@ -114,6 +133,39 @@ app.get('/', async (req, res) => {
   res.render('home', {users: users} );
 })
 
+
+// app.post('/address/create', function (req, res) {
+//   const UserId = req.body.UserId
+//   const street = req.body.street
+//   const number = req.body.number
+//   const city = req.body.city
+
+//   const address = {
+//     street,
+//     number,
+//     city,
+//     UserId,
+//   }
+
+//   Address.create(address)
+//     .then(res.redirect(`/users/edit/${UserId}`))
+//     .catch((err) => console.log(err))
+// })
+
+// app.post('/address/delete/', function (req, res) {
+//   const id = req.body.id
+
+//   Address.destroy({
+//     where: {
+//       id: id,
+//     },
+//   })
+//     .then(res.redirect('/'))
+//     .catch((err) => console.log(err))
+// })
+
+
+
 app.post('/address/create', async (req, res) => {
 
   const UserId = req.body.UserId;
@@ -130,7 +182,7 @@ app.post('/address/create', async (req, res) => {
 
   await Address.create(address);
 
-  res.redirect(`users/edit/${UserId}`); 
+  res.redirect(`/users/edit/${UserId}`); 
 })
 
 app.post('/address/delete', async (req, res) => {
@@ -140,14 +192,15 @@ app.post('/address/delete', async (req, res) => {
 
   await Address.destroy({where: {id: id}})
 
-  res.redirect(`users/edit/${UserId}`); 
+  res.redirect(`/users/edit/${UserId}`); 
 })
 
 
 conn
-  .sync()
-  //.sync({force: true}) 
+  // .sync()
+  .sync({force: true}) 
   .then( ()=>{ 
     app.listen(3000)
   })
   .catch(err => console.log(err))
+

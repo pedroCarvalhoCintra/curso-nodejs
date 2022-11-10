@@ -8,7 +8,7 @@ const conn = require('./db/conn')
 
 const User = require('./models/User');
 
-app.engine('handlebars', exphbs())
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.use(
@@ -62,7 +62,7 @@ app.post('/users/delete/:id', async (req, res) => {
 
   await User.destroy({where: {id: id}});
 
-  req.redirect('/');
+  res.redirect('/');
 
 })
 
@@ -73,7 +73,7 @@ app.get('/users/edit/:id', async (req, res) => {
 
   const user = await User.findOne({raw: true, where: {id: id}});
 
-  req.redirect('useredit', {user});
+  res.redirect('useredit', {user});
 
 })
 

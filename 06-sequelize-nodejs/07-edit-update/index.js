@@ -8,7 +8,7 @@ const conn = require('./db/conn')
 
 const User = require('./models/User');
 
-app.engine('handlebars', exphbs())
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.use(
@@ -59,10 +59,10 @@ app.get('/users/:id', async (req, res) => {
 app.post('/users/delete/:id', async (req, res) => { 
 
   const id = req.params.id;
-
+  
   await User.destroy({where: {id: id}});
 
-  req.redirect('/');
+  res.redirect('/');
 
 })
 
@@ -71,18 +71,28 @@ app.get('/users/edit/:id', async (req, res) => { // realiza a edição do usuár
 
   const id = req.params.id;
 
-  const user = await User.findOne({raw: true, where: {id: id}});
-
-  req.redirect('useredit', {user});
+  await User.findOne({
+    raw: true,
+    where: {
+      id: id,
+    },
+  })
+    .then((user) => {
+      console.log(user)
+      res.render('useredit', { user })
+    })
+    .catch((err) => console.log(err))
 
 })
 
 app.post('/users/update', async (req, res) => { // realiza o update no banco de dados;
 
+  console.log('id:');
+  console.log(req.body.id);
   const id = req.body.id;
   const name = req.body.name;
   const occupation = req.body.occupation;
-  const newsletter = req.body.newsletter;
+  let newsletter = req.body.newsletter;
 
   if ( newsletter == 'on') {
     newsletter = true;
@@ -96,6 +106,7 @@ app.post('/users/update', async (req, res) => { // realiza o update no banco de 
     occupation, 
     newsletter
   }
+  console.log(userData);
 
   await User.update(userData, {where: {id: id}});
 
@@ -113,6 +124,10 @@ app.get('/', async (req, res) => {
   res.render('home', {users: users} );
 })
 
-conn.sync().then( ()=>{
-  app.listen(3000)
-}).catch(err => console.log(err))
+conn
+  .sync({force: true}) //// 
+  .then( ()=>{
+    app.listen(3000)
+  })
+  .catch(err => console.log(err))
+

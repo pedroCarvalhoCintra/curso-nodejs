@@ -1,5 +1,8 @@
-<h1>Allt Tasks:</h1>
+<h1>All Tasks:</h1>
 <ul class="task-list">
+  {{#if emptyTasks}}
+    <p>No tasks</p>
+  {{/if}}
   {{#each tasks}}
     <li>
       {{#if this.done}}

@@ -4,7 +4,7 @@ const mysql = require('mysql')
 
 const app = express()
 
-app.engine('handlebars', exphbs())
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.use(
@@ -32,7 +32,7 @@ app.post('/books/insertbook', function (req, res) {
       console.log(err)
     }
 
-    res.redirect('/')
+    res.redirect('/books')
   })
 })
 
